@@ -77,8 +77,8 @@ public class _14500 {
 					}
 					
 					
-					//      ㅁ
-					//	   ㅁㅁㅁ
+					//    ㅁ
+					// ㅁㅁㅁ
 					if( i-1 >= 0  && j+2 < M) {
 						int sum = a[i][j] + a[i][j+1] + a[i][j+2] + a[i-1][j+2];
 						if( Max < sum ) Max = sum;
