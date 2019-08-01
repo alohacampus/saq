@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class _14500 {
 	public static void main(String[] args) throws FileNotFoundException {
-		// N x M ¿­ÀÇ Çà·Ä¿¡ ÀÔ·Â
+		// N x M ì—´ì˜ í–‰ë ¬ì— ì…ë ¥
 		int N, M;
 		File file = new File("C:\\SAQ\\Java\\Test01\\_14500.txt");
 		Scanner sc = new Scanner(file);
@@ -28,80 +28,80 @@ public class _14500 {
 				}
 			}
 			
-			// ºê·çÆ®Æ÷½º : ÀüÃ¼¼øÈ¸
+			// ë¸Œë£¨íŠ¸í¬ìŠ¤ : ì „ì²´ìˆœíšŒ
 			for (int i = 0; i < N ; i++) {
 				for (int j = 0; j < M; j++) {
-					// ¤±¤±¤±¤±
+					// ã…ã…ã…ã…
 					if( j+3 < M) {
 						int sum = a[i][j] + a[i][j+1] + a[i][j+2] + a[i][j+3];
 						if( Max < sum ) Max = sum;
 					}
 					
-					// ¤±
-					// ¤±
-					// ¤±
-					// ¤±
+					// ã…
+					// ã…
+					// ã…
+					// ã…
 					if( i+3 < N) {
 						int sum = a[i][j] + a[i+1][j] + a[i+2][j] + a[i+3][j];
 						if( Max < sum ) Max = sum;
 					}
 					
-					//  ¤±¤±¤±
-					//	     ¤±
+					//  ã…ã…ã…
+					//	     ã…
 					if( i+1 < N  && j+2 < M ) {
 						int sum = a[i][j] + a[i][j+1] + a[i][j+2] + a[i+1][j+2];
 						if( Max < sum ) Max = sum;
 					}
 					
-					//   ¤±   
-					//   ¤±
-					//  ¤±¤±
+					//   ã…   
+					//   ã…
+					//  ã…ã…
 					if( j-1 >= 0 && i+2 < N) {
 						int sum = a[i][j] + a[i+1][j] + a[i+2][j] + a[i+2][j-1];
 						if( Max < sum ) Max = sum;
 					}
 					
-					// ¤±
-					// ¤±¤±¤±
+					// ã…
+					// ã…ã…ã…
 					if( i+1 < N && j+2 < M  ) {
 						int sum = a[i][j] + a[i+1][j] + a[i+1][j+1] + a[i+1][j+2];
 						if( Max < sum ) Max = sum;
 					}
 					
-					//  ¤±¤±
-					//  ¤±
-					//  ¤±
+					//  ã…ã…
+					//  ã…
+					//  ã…
 					if( i+2 < N && j+1 < M  ) {
 						int sum = a[i][j] + a[i+1][j] + a[i+2][j] + a[i][j+1];
 						if( Max < sum ) Max = sum;
 					}
 					
 					
-					//      ¤±
-					//	   ¤±¤±¤±
+					//      ã…
+					//	   ã…ã…ã…
 					if( i-1 >= 0  && j+2 < M) {
 						int sum = a[i][j] + a[i][j+1] + a[i][j+2] + a[i-1][j+2];
 						if( Max < sum ) Max = sum;
 					}
 					
-					//   ¤±   
-					//   ¤±
-					//   ¤±¤±
+					//   ã…   
+					//   ã…
+					//   ã…ã…
 					if( i+2 < N && j+1 < M ) {
 						int sum = a[i][j] + a[i+1][j] + a[i+2][j] + a[i+2][j+1];
 						if( Max < sum ) Max = sum;
 					}
 					
-					// ¤±¤±¤±
-					// ¤±
+					// ã…ã…ã…
+					// ã…
 					if( i+1 < N && j+2 < M  ) {
 						int sum = a[i][j] + a[i+1][j] + a[i+1][j+1] + a[i+1][j+2];
 						if( Max < sum ) Max = sum;
 					}
 					
-					//  ¤±¤±
-					//    ¤±
-					//    ¤±
+					//  ã…ã…
+					//    ã…
+					//    ã…
 					if( i+2 < N && j+1 < M  ) {
 						int sum = a[i][j] + a[i][j+1] + a[i+1][j+1] + a[i+2][j+1];
 						if( Max < sum ) Max = sum;
@@ -111,9 +111,9 @@ public class _14500 {
 					
 					
 					// copy			
-					//   ¤±
-					//  ¤±¤±
-					//  ¤±
+					//   ã…
+					//  ã…ã…
+					//  ã…
 					if(i+2 < N && j-1 >= 0) {
 						int sum = a[i][j] + a[i+1][j] + a[i+1][j-1] + a[i+2][j-1];
 						if( Max < sum ) Max = sum;
@@ -155,8 +155,8 @@ public class _14500 {
 						}
 					}
 					
-					//  ¤±¤±
-					//  ¤±¤±
+					//  ã…ã…
+					//  ã…ã…
 					if(i+1 < N && j+1 < M) {
 						int sum = a[i][j] + a[i][j+1] + a[i+1][j] + a[i+1][j+1];
 						if(sum > Max) Max = sum;
