@@ -110,7 +110,6 @@ public class _14500 {
 					
 					
 					
-					// copy			
 					//   ㅁ
 					//  ㅁㅁ
 					//  ㅁ
@@ -132,6 +131,9 @@ public class _14500 {
 					}
 					
 					
+					// ㅁ
+					// ㅁㅁ
+					// ㅁ
 					if(i+2 < N) {
 						int sum = a[i][j] + a[i+1][j] + a[i+2][j];
 						if(j-1 >= 0) {
