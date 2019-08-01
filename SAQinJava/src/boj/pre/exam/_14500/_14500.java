@@ -10,12 +10,11 @@ public class _14500 {
 		int N, M;
 		File file = new File("C:\\SAQ\\Java\\Test01\\_14500.txt");
 		Scanner sc = new Scanner(file);
+//		Scanner sc = new Scanner(System.in);
 		int testcase = sc.nextInt();
-		System.out.println(testcase);
+		System.out.println("testcase: " + testcase);
 		for (int T = 0; T < testcase; T++) {
 		
-//			N = sc.nextInt();
-//			M = sc.nextInt();
 			N = sc.nextInt();
 			M = sc.nextInt();
 			int Max = 0;
