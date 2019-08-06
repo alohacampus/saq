@@ -3,7 +3,7 @@ package prob.basic;
 import java.util.Scanner;
 
 /*
-       *인접행렬 
+    *인접행렬 
 	1부터 N까지의 번호가 있는 정점들과 이 정점들을 잇는 간선들로 이루어진 방향 그래프
 	(directed graph)가 있다. 이 정점들 간의 관계를 인접 배열로 구성하여
 	아래의 규칙대로 출력하는 프로그램을 작성하시오.
@@ -22,6 +22,15 @@ import java.util.Scanner;
 	
 	[출력]
 	각 줄마다 "#T"를 출력한 뒤, 두 번째 줄부터 N줄에 걸쳐 인접배열을 출력한다.
+	
+	(입력예시)
+	1
+	5 5
+	4 3
+	3 4
+	2 4
+	1 3
+	4 1
  */
 public class adjacencyMatrix {
 	// 준비할 변수
