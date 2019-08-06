@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
+ 	  *인접리스트
 	1부터 N까지의 번호가 있는 정점들과 이 정점들을 잇는 간선들로 이루어진 방향 그래프
 	(directed graph)가 있다. 이 정점들 간의 관계를 인접 리스트로 구성하여
 	아래의 규칙대로 출력하는 프로그램을 작성하시오.
