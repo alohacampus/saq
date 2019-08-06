@@ -23,6 +23,13 @@ import java.util.Scanner;
 	
 	[출력]
 	각 줄마다 "#T"를 출력한 뒤, 두 번째 줄부터 N줄에 걸쳐 각 정점에 연결된 정점들의 리스트, 인접리스트를 출력한다.
+	
+	(입력 예시)
+	1
+	4 3
+	1 4
+	3 2
+	2 1
  */
 public class adjacencyList {
 	// 준비할 변수
