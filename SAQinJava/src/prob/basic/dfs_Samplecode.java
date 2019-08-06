@@ -45,6 +45,7 @@ public class dfs_Samplecode {
 				if(visited[i] == 0 && MAT[idx][i] == 1) {
 					// i번째 정점을 방문
 					System.out.println(i + "번 정점 방문");
+					cnt++;
 					visited[i] = 1;
 					dfs(i, depth+1);
 					// 탐색이 끝나면 해제
@@ -75,20 +76,26 @@ public class dfs_Samplecode {
 				}
 			}
 			
+			// 인접배열 정점간의 관계 지정
 			for (int i = 1; i <= M; i++) {
 				A = sc.nextInt();
 				B = sc.nextInt();
 				MAT[A][B] = 1;
 			}
 			
+			// 인접배열 출력
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
 					System.out.print(MAT[i][j] + " ");
 				}
 				System.out.println();
 			}
-			dfs(1, 2);
-			System.out.println(cnt);
+			
+			// 그래프 탐색 - DFS(Depth First Search)
+			dfs(1, 3);
+			
+			// root(+1) 포함 정점 방문 수
+			System.out.println(cnt+1 + "개의 정점 방문");
 			
 		}
 	}
