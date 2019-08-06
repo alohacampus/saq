@@ -33,16 +33,19 @@ public class dfs_Samplecode {
 	// i번째 정점을 방문(O) visitied[i] = 1
 	// i번째 정점을 방문(X) visitied[i] = 0
 	static int visited[] = new int[101];
-	static int Answer[] = new int[101];
 	
 	// 인접 배열
 	static int MAT[][] = new int[101][101];
 	// 방문횟수
 	static int cnt = 0;
 	
-	public static void dfs(int idx, int depth) {
+	
+	// void dfs(int idx, int depth) 
+	//- idx : 현재위치, depth : 깊이 를 기본적인 인자로 가진다.
+	public static void dfs(int idx) {
 		// 종료조건
-		if(depth == N) {
+		if(idx == N) {
+			
 		}
 		// 탐색조건
 		else {
@@ -54,7 +57,7 @@ public class dfs_Samplecode {
 					System.out.println(i + "번 정점 방문");
 					cnt++;
 					visited[i] = 1;
-					dfs(i, depth+1);
+					dfs(i);
 					// 탐색이 끝나면 해제
 					System.out.println(i + "번으로 돌아옴");
 					visited[i] = 0;
@@ -99,7 +102,7 @@ public class dfs_Samplecode {
 			}
 			
 			// 그래프 탐색 - DFS(Depth First Search)
-			dfs(1, 3);
+			dfs(1);
 			
 			// root(+1) 포함 정점 방문 수
 			System.out.println(cnt+1 + "개의 정점 방문");
