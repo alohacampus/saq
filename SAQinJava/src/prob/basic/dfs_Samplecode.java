@@ -30,7 +30,7 @@ public class dfs_Samplecode {
 	
 	// 인접 배열
 	static int MAT[][] = new int[101][101];
-	//
+	// 방문횟수
 	static int cnt = 0;
 	
 	public static void dfs(int idx, int depth) {
