@@ -1,14 +1,14 @@
 package prob.basic;
 /*
  
-	³Êºñ ¿ì¼± Å½»ö(Breadth First Search, BFS)
-	- ³Êºñ ¿ì¼± Å½»öÀº Æ®¸®³ª ±×·¡ÇÁ¸¦ Å½»öÇÏ´Â ¾Ë°í¸®Áò Áß ÇÏ³ª·Î,
-	 ½ÃÀÛ Á¤Á¡¿¡¼­ ½ÃÀÛÇÏ¿© ÀÎÁ¢ÇÑ Á¤Á¡À» ¸ÕÀú Å½»öÇÏ´Â ¹æ¹ýÀÌ´Ù.
+	ë„ˆë¹„ ìš°ì„  íƒìƒ‰(Breadth First Search, BFS)
+	- ë„ˆë¹„ ìš°ì„  íƒìƒ‰ì€ íŠ¸ë¦¬ë‚˜ ê·¸ëž˜í”„ë¥¼ íƒìƒ‰í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜ ì¤‘ í•˜ë‚˜ë¡œ,
+	 ì‹œìž‘ ì •ì ì—ì„œ ì‹œìž‘í•˜ì—¬ ì¸ì ‘í•œ ì •ì ì„ ë¨¼ì € íƒìƒ‰í•˜ëŠ” ë°©ë²•ì´ë‹¤.
 	 
-	- bfs´Â ÃÖ¼Òºñ¿ë °æ·Î¸¦ Ã£´Â µ¥¿¡ ÀåÁ¡ÀÌ ÀÖÀ¸¸ç,
-	Queue¸¦ ÀÌ¿ëÇØ¼­ ±¸ÇöÇÑ´Ù.
+	- bfsëŠ” ìµœì†Œë¹„ìš© ê²½ë¡œë¥¼ ì°¾ëŠ” ë°ì— ìž¥ì ì´ ìžˆìœ¼ë©°,
+	Queueë¥¼ ì´ìš©í•´ì„œ êµ¬í˜„í•œë‹¤.
 	
-	(ÀÔ·Â¿¹½Ã)
+	(ìž…ë ¥ì˜ˆì‹œ)
 	1
 	7 6
 	1 7
@@ -19,14 +19,14 @@ package prob.basic;
 	3 6
 	6 7
 	
-	(±×·¡ÇÁ ¿¹½Ã)
+	(ê·¸ëž˜í”„ ì˜ˆì‹œ)
 	    1
 	   /  \
 	  2    3   
 	 / \    \
 	4   5    6
-			 |
-			 7
+		 |
+	         7
 
 */
 
@@ -36,44 +36,44 @@ import java.util.Scanner;
 
 public class bfs_Samplecode {
 	static int T, N, M, A, B;
-	// Á¤Á¡À» ´ãÀ» Å¥ (row, col, cost)
+	// ì •ì ì„ ë‹´ì„ í (row, col, cost)
 	static Queue<Integer> que = new LinkedList<Integer>();
 	
-	// Ãâ¹ßÁö S, ¸ñÀûÁö E
+	// ì¶œë°œì§€ S, ëª©ì ì§€ E
 	static int S, E;
 	
-	// ÀÎÁ¢ Çà·Ä
+	// ì¸ì ‘ í–‰ë ¬
 	static int MAT[][] = new int[101][101];
 	
-	// i¹øÂ° Á¤Á¡À» ¹æ¹®Çß´Â Áö ¿©ºÎ¸¦ Ã¼Å©ÇÒ ¹è¿­
-	// i¹øÂ° Á¤Á¡À» ¹æ¹®(O) visitied[i] = 1
-	// i¹øÂ° Á¤Á¡À» ¹æ¹®(X) visitied[i] = 0
+	// ië²ˆì§¸ ì •ì ì„ ë°©ë¬¸í–ˆëŠ” ì§€ ì—¬ë¶€ë¥¼ ì²´í¬í•  ë°°ì—´
+	// ië²ˆì§¸ ì •ì ì„ ë°©ë¬¸(O) visitied[i] = 1
+	// ië²ˆì§¸ ì •ì ì„ ë°©ë¬¸(X) visitied[i] = 0
 	static int visited[] = new int[101];
 	
 	
 	public static void bfs() {
-		// 1. ½ÃÀÛÁ¡ S¸¦ Å¥¿¡ ³Ö´Â´Ù.
+		// 1. ì‹œìž‘ì  Së¥¼ íì— ë„£ëŠ”ë‹¤.
 		que.add(S);
 		visited[S] = 1;
-		// 5. Å¥°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é ¹Ýº¹
+		// 5. íê°€ ë¹„ì–´ìžˆì§€ ì•Šë‹¤ë©´ ë°˜ë³µ
 		while(!que.isEmpty()) {
-			// 2. Å¥¿¡¼­ ÇÑÁ¡À» »Ì¾Æ ±âÁØÁ¡À¸·Î »ï´Â´Ù.
+			// 2. íì—ì„œ í•œì ì„ ë½‘ì•„ ê¸°ì¤€ì ìœ¼ë¡œ ì‚¼ëŠ”ë‹¤.
 			System.out.println("now : " + que.peek());
 			int now = que.poll();
-			// 3. ±âÁØÁ¡ÀÌ ¸ñÀûÁöÀÌ¸é Á¾·á
+			// 3. ê¸°ì¤€ì ì´ ëª©ì ì§€ì´ë©´ ì¢…ë£Œ
 			if(now == E) {
 				break;
 			}
-			// 4. ±×·¸Áö ¾ÊÀº °æ¿ì Å½»ö
+			// 4. ê·¸ë ‡ì§€ ì•Šì€ ê²½ìš° íƒìƒ‰
 			else {
 				for (int i = 1; i <= N; i++) {
-					// ±âÁ¸¿¡ ¹æ¹®ÇÏÁö ¾Ê°í
-					// ÇöÀç Á¤Á¡°ú ¿¬°áµÈ Á¡À» Å½»ö
+					// ê¸°ì¡´ì— ë°©ë¬¸í•˜ì§€ ì•Šê³ 
+					// í˜„ìž¬ ì •ì ê³¼ ì—°ê²°ëœ ì ì„ íƒìƒ‰
 					if(visited[i] == 0 && MAT[now][i] == 1) {
 						visited[i] = 1;
-						// ÇØ´ç ÁöÁ¡À» Å¥¿¡ ³Ö´Â´Ù.
+						// í•´ë‹¹ ì§€ì ì„ íì— ë„£ëŠ”ë‹¤.
 						que.add(i);
-						System.out.println(i + "¹ø Á¤Á¡ ¹æ¹®");
+						System.out.println(i + "ë²ˆ ì •ì  ë°©ë¬¸");
 					}
 				}
 			}
@@ -84,36 +84,36 @@ public class bfs_Samplecode {
 		Scanner sc = new Scanner(System.in);
 		T = sc.nextInt();
 		for (int test_case = 0; test_case < T; test_case++) {
-			// N : Á¤Á¡ÀÇ ¼ö
-			// M : °£¼±ÀÇ ¼ö
+			// N : ì •ì ì˜ ìˆ˜
+			// M : ê°„ì„ ì˜ ìˆ˜
 			N = sc.nextInt();
 			M = sc.nextInt();
 			
-			// S : Ãâ¹ßÁö
-			// E : ¸ñÀûÁö
+			// S : ì¶œë°œì§€
+			// E : ëª©ì ì§€
 			S = sc.nextInt();
 			E = sc.nextInt();
 			
-			// visited¹è¿­ ÃÊ±âÈ­
+			// visitedë°°ì—´ ì´ˆê¸°í™”
 			for (int i = 0; i < N; i++) {
 				visited[i] = 0;
 			}
 			
-			// ÀÎÁ¢¹è¿­ ÃÊ±âÈ­
+			// ì¸ì ‘ë°°ì—´ ì´ˆê¸°í™”
 			for (int i = 1; i <= N ; i++) {
 				for (int j = 1; j <= M; j++) {
 					MAT[i][j] = 0;
 				}
 			}
 			
-			// ÀÎÁ¢¹è¿­ Á¤Á¡°£ÀÇ °ü°è ÁöÁ¤
+			// ì¸ì ‘ë°°ì—´ ì •ì ê°„ì˜ ê´€ê³„ ì§€ì •
 			for (int i = 1; i <= M; i++) {
 				A = sc.nextInt();
 				B = sc.nextInt();
 				MAT[A][B] = 1;
 			}
 			
-			// ÀÎÁ¢¹è¿­ Ãâ·Â
+			// ì¸ì ‘ë°°ì—´ ì¶œë ¥
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
 					System.out.print(MAT[i][j] + " ");
@@ -121,10 +121,10 @@ public class bfs_Samplecode {
 				System.out.println();
 			}
 			
-			// ±×·¡ÇÁ Å½»ö - BFS(Breadth First Search)
+			// ê·¸ëž˜í”„ íƒìƒ‰ - BFS(Breadth First Search)
 			bfs();
 			
-			// Á¤Á¡ ¹æ¹® ¼ö
+			// ì •ì  ë°©ë¬¸ ìˆ˜
 		}
 	}
 }
