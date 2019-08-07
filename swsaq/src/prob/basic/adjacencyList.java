@@ -62,6 +62,7 @@ public class adjacencyList {
 					System.out.print(alist[i].get(j) + " ");
 				}
 				System.out.println();
+				
 			}
 			
 		}
