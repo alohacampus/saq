@@ -21,6 +21,7 @@ public class d2Array {
 				System.out.print(arr[i][j] + " ");
 			}
 			System.out.println();
+			
 		}
 	}
 }
