@@ -62,6 +62,7 @@ public class adjacencyMatrix {
 					System.out.print(MAT[i][j] + " ");
 				}
 				System.out.println();
+				
 			}
 		}
 	}
