@@ -2,6 +2,7 @@ package wow.easy.ch202;
 
 import java.util.Scanner;
 
+
 public class ch202_solution {
 	
 	// 입력값을 입력받는다.

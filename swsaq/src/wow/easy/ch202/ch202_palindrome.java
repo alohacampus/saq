@@ -2,6 +2,7 @@ package wow.easy.ch202;
 
 import java.util.Scanner;
 
+
 /*
 	1. 문제
 		평소 숫자를 가지고 놀기 좋아하는 종섭이는 숫자를 쓰고 더하고 뒤집고 놀다가 재미있는
