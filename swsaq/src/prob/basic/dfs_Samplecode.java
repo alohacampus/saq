@@ -106,6 +106,7 @@ public class dfs_Samplecode {
 			
 			// root(+1) 포함 정점 방문 수
 			System.out.println(cnt+1 + "개의 정점 방문");
+		
 			
 		}
 	}
