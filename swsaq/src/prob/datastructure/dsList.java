@@ -55,6 +55,7 @@ public class dsList {
 		// likedList의 원소 개수 출력
 		System.out.println("u.size = " + u.size());
 		
+		
 	}
 	
 }
