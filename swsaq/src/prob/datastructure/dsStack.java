@@ -57,6 +57,8 @@ public class dsStack {
 		// stack에 아무것도 없는지 확인
 		if(stk.isEmpty())
 			System.out.println("stack is empty");
+		
+		
 	}
 	
 }
