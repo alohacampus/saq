@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Random;
 
+
 public class _14500_testcase {
 	public static void main(String[] args) throws FileNotFoundException {
 		// 颇老 按眉 积己

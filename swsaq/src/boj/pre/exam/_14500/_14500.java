@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 public class _14500 {
 	public static void main(String[] args) throws FileNotFoundException {
 		// N x M 열의 행렬에 입력
