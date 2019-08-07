@@ -81,6 +81,7 @@ public class bfs_Samplecode {
 						// 해당 지점을 큐에 넣는다.
 						que.add(i);
 						System.out.println(i + "번 정점 방문");
+						
 					}
 				}
 			}
