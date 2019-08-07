@@ -54,5 +54,6 @@ public class dsQueue {
 		// queue에서 아무것도 없는지 확인
 		if(que.isEmpty())
 			System.out.println("queue is empty");
+		
 	}
 }
