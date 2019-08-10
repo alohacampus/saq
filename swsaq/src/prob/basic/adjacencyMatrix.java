@@ -33,9 +33,9 @@ import java.util.Scanner;
 	4 1
  */
 public class adjacencyMatrix {
-	// 준비할 변수
+	// T : 테스트케이스, N : 정점, M : 간선, A :출발지(정점), B :목적지(정점)
 	static int T, N, M, A, B;
-	// 인접배열
+	// 인접배열 - 배열 index가 0부터 쓰이지만, 입력정점 그대로 쓰기 위해 index:1 부터 사용
 	static int MAT[][] = new int[101][101];
 	
 	public static void main(String[] args) {
@@ -44,19 +44,21 @@ public class adjacencyMatrix {
 		for (int test_case = 1; test_case <= T; test_case++) {
 			N = sc.nextInt();
 			M = sc.nextInt();
-			// 인접 배열 초기화
+			// 인접 배열 초기화 - 다음 테스크케이스에서 인접행렬 정보 덮어쓰기 방지
 			for (int i = 1; i <= N; i++) {
-				for (int j = 1; j <= M; j++) {
+				for (int j = 1; j <= N; j++) {
 					MAT[i][j] = 0;
 				}
 			}
 			
+			// 간선의 개수(M)만큼 정점의 관계 입력 
 			for (int i = 1; i <= M; i++) {
 				A = sc.nextInt();
 				B = sc.nextInt();
 				MAT[A][B] = 1;
 			}
 			System.out.println("#" + test_case);
+			// 그래프를 구현한 인접행렬 데이터 출력
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
 					System.out.print(MAT[i][j] + " ");
