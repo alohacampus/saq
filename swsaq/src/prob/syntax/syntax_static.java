@@ -17,7 +17,7 @@ public class syntax_static {
 		// sPrint()는 static 메소드로 객체 생성없이 접근하는 메소드이므로
 		// 할당되지 않은 변수 A에 접근할 수 없으므로 
 		// static 메소드에서 static 변수가 아닌 변수를 참조할 수 없다.
-		// System.out.println(A);		// 불가능한 호출
+		//	 System.out.println(A);		// 불가능한 호출
 		System.out.println(sA);			// static 변수로 이미 메모리에 할당되어 있어서 호출 가능
 	}
 	
