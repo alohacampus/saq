@@ -32,7 +32,7 @@ import java.util.Scanner;
 	2 1
  */
 public class adjacencyList {
-	// 준비할 변수
+	// T : 테스트케이스, N : 정점, M : 간선, A :출발지(정점), B :목적지(정점)
 	static int T, N, M, A, B;
 	// 인접 리스트
 	static ArrayList<Integer> alist[] = new ArrayList[101];
@@ -50,13 +50,14 @@ public class adjacencyList {
 			for (int i = 1; i <= N; i++) {
 				alist[i].clear();
 			}
-			
+			// 인접 리스트에 그래프 정점의 관계 입력
 			for (int i = 1; i <= M; i++) {
 				A = sc.nextInt();
 				B = sc.nextInt();
-				alist[A].add(B);
+				alist[i].add(B);
 			}
 			
+			// 인접리스트 데이터 출력
 			for (int i = 1; i <= N; i++) {
 				for (int j = 0; j < alist[i].size(); j++) {
 					System.out.print(alist[i].get(j) + " ");
