@@ -1,5 +1,7 @@
 package prob.basic.dfs;
 
+import java.util.Scanner;
+
 /*
  	Q.방탈출게임1
  	  가원이는 방탈출게임 지역대회에 참가하였다. 이 게임은 1부터 N번까지 번호가 매겨진
@@ -35,6 +37,60 @@ package prob.basic.dfs;
  	 #1 2
  	
  */
+
 public class dfsEscapeRoom1 {
+	static int T, N, M;
+	// P[i] : i번째 방의 포탈
+	static int P[] = new int[3001];
+	static int Answer;
+	 
+	public static void dfs(int idx, int sum) {
+		// 종료조건
+		if( idx == M ) { // 가지치기
+			if(sum > Answer) {
+				Answer = sum;
+			}
+		}
+		// 탐색조건
+		else {
+			if (P[idx] <= M) {
+				dfs(P[idx], sum + 1);
+			}
+		}
+		
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		T = sc.nextInt();
+		for (int test_case = 1; test_case <= T; test_case++) {
+			N = sc.nextInt();
+			M = sc.nextInt();
+			for (int i = 1; i <= N - 1; i++) {
+				P[i] = sc.nextInt();
+			}
+			// 출구를 찾지 못한다면 -1
+			Answer = -1;
+			// i번째 포탈은 i보다 큰 방으로 이동하므로
+			// 출구보다 큰 방번호는 살펴볼 필요가 없다
+			for (int i = 1; i <= M; i++) {
+				dfs(i, 0);
+			}
+			System.out.println("#" + test_case + " " + Answer);
+		}
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
