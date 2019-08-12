@@ -49,7 +49,7 @@ public class dfsPermutation {
 				System.out.print(Answer[i] + " ");
 			}
 			System.out.println();
-		}
+		} 
 		// Å½»öÁ¶°Ç
 		else {
 			for (int i = 1; i <= N; i++) {
