@@ -81,7 +81,7 @@ public class dfs_Samplecode {
 			
 			// 인접배열 초기화
 			for (int i = 1; i <= N ; i++) {
-				for (int j = 1; j <= M; j++) {
+				for (int j = 1; j <= N; j++) {
 					MAT[i][j] = 0;
 				}
 			}
