@@ -50,7 +50,7 @@ public class dfsPermutation {
 			}
 			System.out.println();
 		} 
-		// 탐색조건
+		// 탐색조건 
 		else {
 			for (int i = 1; i <= N; i++) {
 				// 아직 선택하지 않은 숫자i를 고른다.
