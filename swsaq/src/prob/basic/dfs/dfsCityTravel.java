@@ -1,4 +1,7 @@
 package prob.basic.dfs;
+
+import java.util.Scanner;
+
 /*
  	Q.외판원순회
  	 1번부터 N번까지 번호가 매겨져 있는 도시가 있고, 도시들 사이에 길이 있는 경우에만
@@ -17,7 +20,7 @@ package prob.basic.dfs;
  	 
  	 [제한조건]
  	 - 도시를 잇은 도로는 일방통행이다. 심지어 i번째 도시에서 j번째 도시로 가는 길은
- 	     있어도, j번재 도시에서 i번째 도리소 가는 길은 없을 수도 있다.
+ 	     있어도, j번재 도시에서 i번째로 돌아서 가는 길은 없을 수도 있다.
  	 - 모든 도시를 정확히 한 번씩만 지나야 함을 유의하라.
  	 
  	 [출력]
@@ -36,5 +39,84 @@ package prob.basic.dfs;
  	 #1 13
  */
 public class dfsCityTravel {
-
+	static int T, N, M;
+	static int Answer;
+	static int visited[] = new int[11];
+	static int MAT[][] = new int[11][11]; 	// 인접행렬
+	
+	// 현재 방문중인 정점 번호, 현재까지 누적된 통행료, 방문한 도시 수
+	public static void dfs(int idx, int cost, int cnt) {
+		// 모든 도시를 전부 방문했을 때
+		if(cnt == N) {
+			// 시작점에서 돌아각ㄹ 길이 있을 경우만
+			if(MAT[idx][M] != 0) {
+				// 기존 답보다 새로운 비용이 더 적게 든다면
+				if(Answer == -1 || Answer > cost + MAT[idx][M]) {
+					Answer = cost + MAT[idx][M];
+				}
+			}
+		}
+		else {
+			for (int i = 1; i <= N; i++) {
+				// 방문한 적이 없고, 길이 있는 도시만 탐색
+				if(visited[i] == 0 && MAT[idx][i] != 0) {
+					// 가지치기, 기존 정답보다 누적비용이 작을 경우에만 탐색
+					if( Answer == -1 || Answer > cost + MAT[idx][i]) {
+						visited[i] = 1;
+						dfs(i, cost + MAT[idx][i], cnt + 1);
+						visited[i] = 0;
+					}
+						
+				}
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		T = sc.nextInt();
+		for (int test_case = 1; test_case <= T; test_case++) {
+			N = sc.nextInt();
+			M = sc.nextInt();
+			// 초기화
+			for (int i = 1; i <= N; i++) {
+				for (int j = 1; j <= N; j++) {
+					MAT[i][j] = 0;
+				}
+			}
+			for (int i = 1; i <= N; i++) {
+				visited[i] = 0;
+			}
+			for (int i = 1; i <= N; i++) {
+				for (int j = 1; j <= N; j++) {
+					MAT[i][j] = sc.nextInt();
+				}
+			}
+			Answer = -1;
+			visited[M] = 1;
+			// DFS 탐색(위치, 비용, 현재까지 방문한 도시의 수)
+			// 시작점 : M,  비용 : 0, 방문한 도시수 : -1
+			dfs(M, 0, 1);
+			System.out.println("#" + test_case + " " + Answer);
+			
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
