@@ -71,9 +71,9 @@ public class dfsPermutation {
 		Scanner sc = new Scanner(System.in);
 		T = sc.nextInt();
 		for (int test_case = 1; test_case <= T; test_case++) {
-			N = sc.nextInt();
+			N = sc.nextInt();				//  N : 3
 			// visited배열 초기화
-			for (int i = 1; i <= N; i++) {
+			for (int i = 1; i <= N; i++) {	//  i : 1 ~ 3
 				visited[i] = 0;
 			}
 			System.out.println("#" + test_case);
