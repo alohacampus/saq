@@ -38,6 +38,12 @@ import java.util.Scanner;
  	
  */
 
+/*
+ 	[풀이]
+ 	1. 종료조건	: (현재위치) == (출구)
+ 	2. 탐색조건	: (포탈위치) < (출구)
+ */
+
 public class dfsEscapeRoom1 {
 	static int T, N, M;
 	// P[i] : i번째 방의 포탈
