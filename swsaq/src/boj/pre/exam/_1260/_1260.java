@@ -1,4 +1,4 @@
-package boj_pre_exam_1260;
+package boj.pre.exam._1260;
 
 
 /*
