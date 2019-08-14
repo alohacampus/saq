@@ -1,5 +1,9 @@
-package boj.pre.exam._1260;
+package boj.dfsbfs.example;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
 
 /*
  	Q.DFS와 BFS
@@ -33,5 +37,122 @@ package boj.pre.exam._1260;
 	
  */
 public class _1260 {
+	
+	static int[][] MAT;
+	static int[] visited;
+	static int N, M, V, A, B;
+	
+	
+	public static void ResetVisit() {
+		for (int i = 1; i <= N; i++) {
+			visited[i]= 0;
+		}
+		System.out.println();
+	}
+	
+	// 깊이 우선 탐색(Depth First Search) - 재귀함수
+	public static void dfs(int idx) {
+		// 방문한 정점 체크
+		visited[idx] = 1;
+		System.out.print(idx + " ");
+		
+		for (int i = 1; i <= N; i++) {
+			if(MAT[idx][i] == 1 && visited[i] == 0) {
+				dfs(i);
+			}
+		}
+	}
+	
+	// 깊이 우선 탐색(Depth First Search) - 스택
+	public static void dfs2(int idx) {
+		Stack<Integer> stack = new Stack<>();
+		stack.push(idx);
+		// 탐색중인 정점
+		int p;
+		boolean flag;
+		
+		visited[idx] = 1;
+		System.out.print(idx + " ");
+		
+		while(!stack.isEmpty()) {
+			p = stack.peek();
+			flag = false;
+			
+			for (int i = 1; i <= N; i++) {
+				if(MAT[p][i] == 1 && visited[i] == 0) {
+					stack.push(i);
+					visited[i] = 1;
+					System.out.print(i + " ");
+					flag = true;
+					break;
+					
+				}
+			}
+			
+			// 조건을 만족하지 않을 경우 정점에서 제거
+			if(!flag)
+				stack.pop();
+			
+		}
+	}
+	
+	
+	// 너비 우선 탐색(Breadth First Search) - 큐
+	public static void bfs(int idx) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.add(idx);
+		// 방문한 정점 체크
+		visited[idx] = 1;
+		
+		while(!queue.isEmpty()) {
+			idx = queue.poll();
+			System.out.print(idx + " ");
+			
+			for (int i = 1; i <= N; i++) {
+				if(MAT[idx][i] == 1 && visited[i] == 0) {
+					queue.offer(i);
+					visited[i] = 1;
+				}
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		M = sc.nextInt();
+		V = sc.nextInt();
+		
+		MAT = new int[N+1][N+1];
+		visited = new int[N+1];
+		
+		for (int i = 1; i <= M; i++) {
+			A = sc.nextInt();
+			B = sc.nextInt();
+			MAT[A][B] = MAT[B][A] = 1;
+		}
+		
+		dfs2(V);
+		ResetVisit();
+		bfs(V);
+	}
+	
 
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
