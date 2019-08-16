@@ -54,7 +54,7 @@ public class adjacencyList {
 			for (int i = 1; i <= M; i++) {
 				A = sc.nextInt();
 				B = sc.nextInt();
-				alist[i].add(B);
+				alist[A].add(B);
 			}
 			
 			// 인접리스트 데이터 출력
