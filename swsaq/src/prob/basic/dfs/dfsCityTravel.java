@@ -48,7 +48,7 @@ public class dfsCityTravel {
 	public static void dfs(int idx, int cost, int cnt) {
 		// 모든 도시를 전부 방문했을 때
 		if(cnt == N) {
-			// 시작점에서 돌아각ㄹ 길이 있을 경우만
+			// 시작점에서 돌아갈 길이 있을 경우만
 			if(MAT[idx][M] != 0) {
 				// 기존 답보다 새로운 비용이 더 적게 든다면
 				if(Answer == -1 || Answer > cost + MAT[idx][M]) {
@@ -96,7 +96,7 @@ public class dfsCityTravel {
 			Answer = -1;
 			visited[M] = 1;
 			// DFS 탐색(위치, 비용, 현재까지 방문한 도시의 수)
-			// 시작점 : M,  비용 : 0, 방문한 도시수 : -1
+			// 시작점 : M,  비용 : 0, 방문한 도시수 : 1
 			dfs(M, 0, 1);
 			System.out.println("#" + test_case + " " + Answer);
 			
