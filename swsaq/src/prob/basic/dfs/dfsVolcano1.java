@@ -11,7 +11,7 @@ package prob.basic.dfs;
  	
  	[입력]
  	  첫 번째 줄에 테스트케이스의 수 T(1 ≤ T ≤ 10)가 주어진다.
- 	각 테스트케이스마다 첫 번재 줄에 가로와 세로의 크기 N이 공백을 두고 주어진다(3 ≤ N ≤ 100).
+ 	각 테스트케이스마다 첫 번째 줄에 가로와 세로의 크기 N이 공백을 두고 주어진다(3 ≤ N ≤ 100).
  	
  	  다음 N개의 줄에는 각 줄에 N개의 숫자들이 공백을 두고 주어지는데 1번재 줄의 j번째
  	 숫자는 섬의 i행 j열의 상태 MAT[i][j]를 나타낸다. MAT[i][j]값이 0인 경우에는 초원이며
@@ -28,7 +28,7 @@ package prob.basic.dfs;
  	0 2 1 0
  	0 1 2 1
  	0 0 1 0
- 	ㅕ
+ 	
  	(출력예시)
  	#1 1
  */
@@ -45,8 +45,8 @@ public class dfsVolcano1 {
 	// -1: 파괴된 초원 , 0: 초원, 1: 바리케이트, 2:화산
 	static int MAT[][] = new int[10][20];
 	// 상하좌우 탐색을 위한 dr,dc  - 동,남,서,북 (시계방향)
-	static int dr[] = { 0,1,0,-1 };
-	static int dc[] = { 1,0,-1,0 };
+	static int dr[] = { 0,1,0,-1 };		// 행의 방향  [0][남][0][북]  
+	static int dc[] = { 1,0,-1,0 };		// 열의 방향  [동][0][서][0]
 	static int Answer;
 	
 	public static void dfs(int now_row, int now_col) {
@@ -60,9 +60,9 @@ public class dfsVolcano1 {
 				&& nxt_col >= 1 && nxt_col <= N ) {
 				// 다음 지점이 초원인 경우
 				if(MAT[nxt_row][nxt_col] == 0) {
-					MAT[nxt_row][nxt_col] = -1;
-					Answer--;
-					dfs(nxt_row, nxt_col);
+					MAT[nxt_row][nxt_col] = -1;		// 다음좌표에 파괴된 초원으로 체크
+					Answer--;						// 초원의 개수를 -1  감소
+					dfs(nxt_row, nxt_col);			// 다음 좌표 탐색
 					// MAT[nxt_row][nxt_col]를 초기화하지 않음
 				}
 			}
@@ -93,11 +93,13 @@ public class dfsVolcano1 {
 					}
 					// 화산인 경우
 					else if(MAT[i][j] == 2) {
+						// 화산을 list 에 담는다.
 						S.add(new int[] {i, j});
 					}
 				}
 			}
-			for (int i = 0; i <= S.size(); i++) {
+			for (int i = 0; i < S.size(); i++) {
+				// 첫 번째 화산(x좌표,y좌표)으로 탐색 시작! 
 				dfs(S.get(i)[0], S.get(i)[1]);
 			}
 			System.out.println("#" + test_case + " " + Answer);
