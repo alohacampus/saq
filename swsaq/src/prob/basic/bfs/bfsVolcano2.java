@@ -63,9 +63,6 @@ public class bfsVolcano2 {
 	
 	// bfs() : 
 	//	<bfs 구현단계>
-	//	3. 기준점이 목적지이면 탐색을 종료한다.
-	//	4. 그렇지 않은 경우 기준점에서 갈 수 있는 다음 정점들을 큐에 넣는다.
-	//	5. 큐에 원소가 없을 때까지 2단계로 돌아가 반복한다.  
 	
 	public static void bfs() {
 		// que를 초기화한다.
@@ -91,11 +88,15 @@ public class bfsVolcano2 {
 			//	1. 시작점을 큐에 넣는다.
 			que.add(S.get(i));
 		}
+		//	5. 큐에 원소가 없을 때까지 2단계로 돌아가 반복한다.  
 		while(!que.isEmpty()) {
 			//	2. 큐에서 한 점을 꺼내서 기준점으로 삼는다.
 			int now[] = que.poll();
 			int now_row = now[0];
 			int now_col = now[1];
+			//	3. 기준점이 목적지이면 탐색을 종료한다. - (종료조건x)
+			
+			//	4. 그렇지 않은 경우 기준점에서 갈 수 있는 다음 정점들을 큐에 넣는다.
 			// 현재 화산에서 다음좌표를 찾는다 (동남서북)
 			for (int i = 0; i < 4; i++) {
 				int nxt_row = now_row + dr[i];
