@@ -1,5 +1,7 @@
 package boj.pre.exam._14503;
 
+import java.util.Scanner;
+
 /*
  	Q.로봇청소기
  	로봇 청소기가 주어졌을 때, 청소하는 영역의 개수를 구하는 프로그램을 작성하시오.
@@ -41,4 +43,101 @@ package boj.pre.exam._14503;
 
 public class _14503 {
 	
+	static int N, M;
+	static int r, c, d;
+	
+	// 왼쪽 방향부터 - 0북,1동,2남,3서
+	static int dr[] = {-1,0,1,0};
+	static int dc[] = {0,1,0,-1};
+	static int MAT[][];
+	static int cnt = 1;
+			
+	public static void dfs(int r, int c, int d) {
+		// 청소를 한다.
+		MAT[r][c] = 2;
+		
+		// 종료조건
+		
+		// 탐색조건
+		// 서남동북 방향확인
+		for (int i = 0; i < 4; i++) {
+			d = (d + 3) % 4;		// 북->서(0->3),  동->남(1->2), 남->서(2->3), 서->북(3->0)   (왼쪽)
+			int nxt_row = r + dr[d];
+			int nxt_col = c + dc[d];
+			
+			if( nxt_row >= 1 && nxt_row <= N 
+					&& nxt_col >= 1 && nxt_col <= M ) {
+				if(MAT[nxt_row][nxt_col] == 0) {
+					// 청소한다.
+					cnt++;
+					dfs(nxt_row, nxt_col, d);
+					return;
+				}
+			}
+		}
+		// 후진
+		int back = (d + 2) % 4;
+		int back_row = r + dr[back];
+		int back_col = c + dc[back];
+		
+		if( back_row >= 1 && back_row <= N 
+				&& back_col >= 1 && back_col <= M ) {
+			if(MAT[back_row][back_col] != 1) {
+				// 후진한다.
+				dfs(back_row, back_col, d);
+			}
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		// 격자의 크기 N행, M열
+		N = sc.nextInt();
+		M = sc.nextInt();
+		
+		MAT = new int[N+1][M+1];
+		
+		// 로봇청소기의 위치 (r,c), 바라보고있는 방향 d
+		r = sc.nextInt();
+		c = sc.nextInt();
+		d = sc.nextInt();
+		
+		
+		// 격자 정보 - 빈칸 : 0, 벽 : 1
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= M; j++) {
+				MAT[i][j] = sc.nextInt();
+			}
+		}
+		
+		dfs(r+1, c+1, d);
+		
+		System.out.println(cnt);
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
