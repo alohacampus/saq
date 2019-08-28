@@ -112,6 +112,8 @@ public class _14503 {
 			}
 		}
 		
+		// (0,0)이 첫번째 좌표이고, MAT[N][M]에서 0번재 index를 사용하지 않기 때문에
+		// r+1, c+1
 		dfs(r+1, c+1, d);
 		
 		System.out.println(cnt);
