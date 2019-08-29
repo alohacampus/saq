@@ -13,7 +13,7 @@ package boj.prob.train;
  */
 
 import java.util.Scanner;
-
+ 
 public class _13235 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -30,8 +30,8 @@ public class _13235 {
 				}
 				
 			}
+			System.out.println(Answer);
 		}
-		System.out.println(Answer);
 	}
 }
 
