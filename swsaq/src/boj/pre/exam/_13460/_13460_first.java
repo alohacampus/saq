@@ -53,9 +53,177 @@ package boj.pre.exam._13460;
 	5
 */
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
 public class _13460_first {
+	// 변수선언
+	public static int N, M;
+	public static int rx, ry, bx, by;
+	public static int[] dx = {0, 1, 0, -1};
+	public static int[] dy = {1, 0, -1, 0};
+	public static char[] d = {'동','남','서','북'};
+	public static char[] dp = {'→','↓','←','↑'};
+	public static int [][] MAT;
+	public static int [][][][] visited;
+	public static Queue<Pair> que = new LinkedList<>();
+	
+	
+	// class : 속성(변수), 기능(메소드)
+	public static class Pair {
+		int rx, ry, bx, by, cnt;
+
+		// alt + shift + S  --> O
+		public Pair(int rx, int ry, int bx, int by, int cnt) {
+			this.rx = rx;
+			this.ry = ry;
+			this.bx = bx;
+			this.by = by;
+			this.cnt = cnt;
+		}
+	}
+	
+	
+	// bfs()
+	public static int bfs() {
+		// 1. 시작점 Pair 를 큐에 넣는다.
+		que.add(new Pair(rx, ry, bx, by, 0));
+		visited[rx][ry][bx][by] = 1;
+		
+		// 5. 큐가 비어있지 않다면 반복
+		while(!que.isEmpty()) {
+			// 2. 큐에서 현재위치(R,B)를 꺼낸다.
+			Pair p = que.poll();
+			
+			// 3. (종료조건)	
+			// - 기울임 10번 초과시 실패(-1)
+			// - 파란색 구슬이 구멍에 빠지면 continue
+			// - 빨간색 구슬이 구멍에 빠지면 cnt
+			if( p.cnt > 10 ) return -1;
+			if( MAT[p.bx][p.by] == 4 ) continue;
+			if( MAT[p.rx][p.ry] == 4 ) return p.cnt; 
+			
+			// 4. (탐색조건)
+			// 빨간색 구슬 이동 
+			for (int i = 0; i < 4; i++) {
+				int nxt_rx = p.rx;
+				int nxt_ry = p.ry;
+				while(true) {
+					// 다음 지점이 벽(1)이랑 구멍(4)이 아니면
+					if( MAT[nxt_rx][nxt_ry] != 1 && MAT[nxt_rx][nxt_ry] != 4 ) {
+						nxt_rx += dx[i];
+						nxt_ry += dy[i];
+					} else {
+						// 다음 지점이 벽(1)이면
+						if( MAT[nxt_rx][nxt_ry] == 1) {
+							nxt_rx -= dx[i];
+							nxt_ry -= dy[i];
+						}
+						break;
+					}
+				}
+				System.out.println(d[i] + " 쪽으로로이동 : " + "(rx,ry) : " +  "( " + nxt_rx + ", " + nxt_ry + " )" + " <빨간구슬> -- " + dp[i] );
+				
+				// 파란색 구슬 이동
+				int nxt_bx = p.bx;
+				int nxt_by = p.by;
+				while(true) {
+					// 다음 지점이 벽(1)이랑 구멍(4)이 아니면
+					if( MAT[nxt_bx][nxt_by] != 1 && MAT[nxt_bx][nxt_by] != 4 ) {
+						nxt_bx += dx[i];
+						nxt_by += dy[i];
+					} else {
+						// 다음 지점이 벽(1)이면
+						if( MAT[nxt_bx][nxt_by] == 1 ) {
+							nxt_bx -= dx[i];
+							nxt_by -= dy[i];
+						}
+						break;
+					}
+				}
+				System.out.println(d[i] + " 쪽으로로이동 : " + "(bx,by) : " +  "( " + nxt_bx + ", " + nxt_by + " )" + " <파란구슬> -- " + dp[i] );
+				System.out.println();
+				// 빨간색 구슬과 파란색 구슬 겹치는지 확인
+				if( nxt_rx == nxt_bx && nxt_ry == nxt_by ) {
+					if( MAT[nxt_rx][nxt_ry] != 4) {
+						int red_cost = Math.abs(nxt_rx - p.rx) + Math.abs(nxt_ry - p.ry);
+						int blue_cost = Math.abs(nxt_bx - p.bx) + Math.abs(nxt_by - p.by);
+						if(red_cost > blue_cost) {
+							nxt_rx -= dx[i];
+							nxt_ry -= dy[i];
+						} else {
+							nxt_bx -= dx[i];
+							nxt_by -= dy[i];
+						}
+					}
+				}
+				
+				// 이동 위치, 이동 횟수를 Pair로 큐에 담는다.
+				// 다음 큐에서 꺼낼 때, 
+				// 파란 구슬부터 구멍에 빠졌는지 확인 (빠졌으면 다음 탐색) 
+				// 빨간 구슬도 구멍에 빠졌는지 확인 
+				if( visited[nxt_rx][nxt_ry][nxt_bx][nxt_by] == 0 ) {
+					visited[nxt_rx][nxt_ry][nxt_bx][nxt_by] = 1;
+					que.add( new Pair(nxt_rx, nxt_ry, nxt_bx, nxt_by, p.cnt +1) );
+				}
+				
+			}
+			
+		}
+		
+		return -1;
+	}
+	
+	
+	
+	
+	
+	
+	// main()
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		M = sc.nextInt();
+		sc.nextLine();
+		
+		MAT = new int[N+1][M+1];
+		visited = new int[N+1][M+1][N+1][M+1];
+		
+		// 문자를 넘버링, R과 B의 입력좌표를 지정.
+		for (int i = 1; i <= N ; i++) {
+			String str = sc.nextLine();
+			for (int j = 1; j <= str.length(); j++) {
+				int num = 0;
+				switch (str.charAt(j-1)) {
+				case '.':  	num = 0;
+							break;
+				case '#':  	num = 1;
+							break;
+				case 'R':  	num = 2;
+							rx = i;
+							ry = j;
+							break;
+				case 'B':  	num = 3;
+							bx = i;
+							by = j;
+							break;
+				case 'O':  	num = 4;
+							break;
+				}
+				MAT[i][j] = num;
+			}
+		}
+		
+		System.out.println(bfs());
+	}
 
 }
+
+
+
+
+
 
 
 
