@@ -1,6 +1,6 @@
 package boj.pre.exam._14890;
 
-import java.util.Scanner;
+import java.util.Scanner;  
 
 public class _14890 {
 	/**
